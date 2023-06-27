@@ -25,6 +25,19 @@ t_pipex	*free_struct(t_pipex *pipex)
 	return (NULL);
 }
 
+char **free_path(char **path)
+{
+	int	i;
+
+	if (path)
+	{
+		while (path[i])
+			free(path[i]);
+		++i;
+	}
+	return (NULL);
+}
+
 static char	**parse_path(char **envp)
 {
 	unsigned int	i;
@@ -52,16 +65,21 @@ t_pipex *create_pipex(char **envp)
 		pipex->first_cmd = malloc(sizeof(*(pipex->first_cmd)));
 		pipex->second_cmd = malloc(sizeof(*(pipex->second_cmd)));
 		if (!pipex->first_cmd || !pipex->second_cmd)
+		{
+			perror("malloc error");
 			return (free_struct(pipex));
+		}
 		pipex->path = parse_path(envp);
+		if (pipex->path == NULL)
+			perror("path error");
 	}
 	return (pipex);
 }
 
-void	parse_argv(t_pipex *pipex, int argc, char **argv)
+void	parse_argv(t_pipex *pipex, char **argv)
 {
+	pipex->first_cmd->call = argv[1];
 	(void)pipex;
-	(void)argc;
 	(void)argv;
 }
 
@@ -71,13 +89,13 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 	{
-		perror("Usage: ./pipex infile cmd1 cmd2 outfile");
+		ft_putendl_fd("Usage: ./pipex infile cmd1 cmd2 outfile", 2);
 		exit(2);
 	}
 	pipex = create_pipex(envp);
 	if (!pipex)
 		return (2);
-	parse_argv(pipex, argc, argv);
+	parse_argv(pipex, argv);
 	int i = 0;
 	for (; pipex->path[i] ; ++i)
 	{

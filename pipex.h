@@ -20,7 +20,7 @@
 
 typedef struct	s_cmd
 {
-	char	*name;
+	char	*call;
 	char	**args;
 }				t_cmd;
 

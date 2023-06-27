@@ -48,6 +48,7 @@ static char	**ft_assign(const char *str, char **tab, int size, char c)
 			j = 0;
 			while (str[i] && str[i] != c)
 				tab[n][j++] = str[i++];
+			tab[n][j++] = '/';
 			tab[n][j] = '\0';
 			++n;
 		}
@@ -80,6 +81,12 @@ static char	**ft_free(char **tab)
 	return (NULL);
 }
 
+/*
+ *	this split function is designed for the pipex project.
+ *	it is used while parsing the PATH variable and adds 
+ *	a slash at the end of each path
+ */
+
 char	**ft_split(const char *s, char c)
 {
 	int		size;
@@ -99,7 +106,7 @@ char	**ft_split(const char *s, char c)
 	while (i < size)
 	{
 		len = ft_splitlen(s, c, &pos);
-		tab[i] = malloc(sizeof(char) * (1 + len));
+		tab[i] = malloc(sizeof(char) * (2 + len));
 		if (!tab[i])
 			return (ft_free(tab));
 		++i;
