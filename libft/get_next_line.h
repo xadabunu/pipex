@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 11:45:21 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/06/25 11:45:21 by xadabunu         ###   ########.fr       */
+/*   Created: 2023/07/02 21:45:03 by xadabunu          #+#    #+#             */
+/*   Updated: 2023/07/02 21:45:03 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include "libft/libft.h"
-# include <errno.h>
+# include <stdlib.h>
+# include <limits.h>
 
-typedef struct	s_pipex
-{
-	unsigned int	argc;
-	const char		**argv;
-	const char		**envp;
-	char			**args;
-	char			**path;
-	int				*fd[2];
-	int				here_doc;
-	char			*infile;
-	char			*outfile;
-}				t_pipex;
+# define OPEN_MAX 50
+# define BUFFER_SIZE 50
 
-char	**split_path(const char *s, char c);
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);
+void	*ft_calloc(size_t nmemb, size_t size);
+
+char	**init_nl();
+char	*gnl_join(char *s1, char *s2);
+size_t	gnlen(const char *str);
 
 #endif

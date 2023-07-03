@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 11:09:28 by xadabunu          #+#    #+#             */
-/*   Updated: 2022/10/28 16:19:35 by xadabunu         ###   ########.fr       */
+/*   Created: 2023/07/01 11:34:59 by xadabunu          #+#    #+#             */
+/*   Updated: 2023/07/01 11:34:59 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 static int	str_count(const char *str, char c)
 {
@@ -48,6 +48,7 @@ static char	**ft_assign(const char *str, char **tab, int size, char c)
 			j = 0;
 			while (str[i] && str[i] != c)
 				tab[n][j++] = str[i++];
+			tab[n][j++] = '/';
 			tab[n][j] = '\0';
 			++n;
 		}
@@ -80,7 +81,7 @@ static char	**ft_free(char **tab)
 	return (NULL);
 }
 
-char	**ft_split(const char *s, char c)
+char	**split_path(const char *s, char c)
 {
 	int		size;
 	char	**tab;
@@ -99,7 +100,7 @@ char	**ft_split(const char *s, char c)
 	while (i < size)
 	{
 		len = ft_splitlen(s, c, &pos);
-		tab[i] = malloc(sizeof(char) * (1 + len));
+		tab[i] = malloc(sizeof(char) * (2 + len));
 		if (!tab[i])
 			return (ft_free(tab));
 		++i;
