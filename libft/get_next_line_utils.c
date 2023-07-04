@@ -12,7 +12,6 @@
 
 #include "get_next_line.h"
 
-
 size_t	gnlen(const char *str)
 {
 	size_t	i;
@@ -50,7 +49,7 @@ char	*gnl_join(char *s1, char *s2)
 	return (str);
 }
 
-char	**init_nl()
+char	**init_nl(void)
 {
 	char	**nl;
 	int		i;

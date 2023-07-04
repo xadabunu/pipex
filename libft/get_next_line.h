@@ -23,7 +23,7 @@
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);
 void	*ft_calloc(size_t nmemb, size_t size);
 
-char	**init_nl();
+char	**init_nl(void);
 char	*gnl_join(char *s1, char *s2);
 size_t	gnlen(const char *str);
 

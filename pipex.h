@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 11:45:21 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/06/25 11:45:21 by xadabunu         ###   ########.fr       */
+/*   Created: 2023/07/04 16:17:56 by xadabunu          #+#    #+#             */
+/*   Updated: 2023/07/04 16:17:59 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 
 # include <unistd.h>
 # include <stdio.h>
-# include "libft/libft.h"
 # include <errno.h>
+# include <fcntl.h>
+# include "libft/libft.h"
 
-typedef struct	s_pipex
+typedef struct s_pipex
 {
-	const char		**envp;
-	char			**args;
-	char			**path;
-	int				*fd[2];
-	int				here_doc;
-	char			*infile;
-	char			*outfile;
+	const char	**envp;
+	char		**args;
+	char		**path;
+	int			fd[2];
+	int			here_doc;
+	char		*infile;
+	char		*outfile;
 }				t_pipex;
 
 char	**split_path(const char *s, char c);
