@@ -12,26 +12,25 @@
 
 #include "pipex.h"
 
-int	here_doc(const char *limiter)
+int	here_doc(const char *limiter, int len, t_pipex *pipex)
 {
-	const char	*file = ".pipex_hidden_file";
-	int			fd;
+	const int	fd = open(pipex->infile, O_CREAT | O_EXCL | O_WRONLY);
 	char		*line;
 
-	fd = open(file, O_CREAT | O_EXCL | O_WRONLY);
 	if (fd == -1)
 		return (-1);
-	line = get_next_line(fd);
-	while (line != NULL)
+	limiter[len] = '\n';
+	ft_putstr_fd("> ", STDOUT_FILENO);
+	line = get_next_line(STDIN_FILENO);
+	while (line && ft_strncmp(line, limiter, ft_strlen(limiter) + 1) != 0)
 	{
-		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) != '\n')
-		{
-			ft_putstr_fd(line, fd);
-			free(line);
-			line = get_next_line(fd);
-		}
-		else
-			free(line);
+		ft_putstr_fd(line, fd);
+		free(line);
+		ft_putstr_fd("> ", STDOUT_FILENO);
+		line = get_next_line(STDIN_FILENO);
 	}
+	if (line)
+		free(line);
 	close(fd);
+	return (1);
 }

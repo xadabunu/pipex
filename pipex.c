@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:31:55 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/03 02:28:06 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/04 01:26:12 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,18 +170,15 @@ int	main(int argc, char **argv, char **envp)
 	pipex = create_pipex(envp);
 	if (!pipex)
 		return (2);
-	n = 0;
+	if (pipex->here_doc)
+		here_doc(argv[2], ft_strlen(argv[2]), pipex);
 	exec_first_cmd(pipex, argv[1]);
+	n = 0;
 	while (n++ < argc - 3)
 		exec_nth_cmd(pipex, n);
 	exec_loop_cmd(pipex, argv);
 	exec_last_cmd(pipex, argv[argc - 2]);
 	parse_argv(pipex, argv);
-	int i = 0;
-	for (; pipex->envp[i] ; ++i)
-	{
-		printf("%s\n", pipex->path[i]);
-	}
 	free_struct(pipex);
 	return (0);
 }

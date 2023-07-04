@@ -20,8 +20,6 @@
 
 typedef struct	s_pipex
 {
-	unsigned int	argc;
-	const char		**argv;
 	const char		**envp;
 	char			**args;
 	char			**path;
