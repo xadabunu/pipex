@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:09:03 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/06 19:56:49 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/06 23:47:27 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*get_path(char **env, char *cmd)
 	char	*temp;
 
 	i = 0;
-		if (cmd[0] == '/')
+	if (cmd[0] == '/')
 	{
 		if (access(cmd, X_OK) == 0)
 			return ((char *)cmd);
@@ -72,7 +72,6 @@ static void	exec_child(t_pipex *pipex, char *cmd, int fd_read, int fd_write)
 	char	*temp;
 
 	dup_fds(fd_read, fd_write, pipex);
-	ft_putendl_fd(cmd, pipex->fd_outfile);	
 	close(pipex->pipe[RD_END]);
 	pipex->args = ft_split(cmd, ' ');
 	if (!pipex->args)
@@ -80,14 +79,9 @@ static void	exec_child(t_pipex *pipex, char *cmd, int fd_read, int fd_write)
 	else
 	{
 		temp = pipex->args[0];
-		pipex->args[0] = get_path(pipex->envp, cmd);
+		pipex->args[0] = get_path(pipex->envp, temp);
 		free(temp);
 	}
-	// for (int i = 0 ; pipex->args[i] ; ++i)
-	// {
-	// 	printf("-> %s\n", pipex->args[i]);
-	// 	fflush(stdout);
-	// }
 	execve(pipex->args[0], pipex->args, pipex->envp);
 	ft_putstr_fd("Command not found: ", STDERR_FILENO);
 	ft_putendl_fd(pipex->args[0], STDERR_FILENO);
