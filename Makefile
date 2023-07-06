@@ -6,7 +6,7 @@
 #    By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/24 18:31:48 by xadabunu          #+#    #+#              #
-#    Updated: 2023/06/26 21:32:01 by xadabunu         ###   ########.fr        #
+#    Updated: 2023/07/06 02:28:27 by xadabunu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ ${NAME}	:	${OBJS} ${LIBFT}
 ${LIBFT}:
 			${MAKE} -C ${LIB_DIR}
 
+bonus	:	${NAME}
+
 clean	:
 			${MAKE} clean -C ${LIB_DIR}
 			${RM} ${OBJS}
@@ -46,4 +48,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	all clean fclean re
+.PHONY	:	all clean fclean re bonus
