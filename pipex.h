@@ -19,20 +19,31 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
+# define WR_END 1
+# define RD_END 0
+# define COMMAND_NOT_FOUND 127
+
 typedef struct s_pipex
 {
-	const char	**envp;
-	char		**args;
-	char		**path;
-	int			last_cmd;
-	int			pipe[2];
-	int			here_doc;
-	char		*infile;
-	int			fd_infile;
-	char		*outfile;
-	int			fd_outfile;
+	char			**envp;
+	char			**args;
+	char			**path;
+	unsigned int	last_cmd_index;
+	int				pipe[2];
+	int				here_doc;
+	char			*infile;
+	int				fd_infile;
+	char			*outfile;
+	int				fd_outfile;
+	int				last_id;
+	int				exit_code;
 }				t_pipex;
 
 char	**split_path(const char *s, char c);
+t_pipex	*free_struct(t_pipex *pipex);
+char	**free_path(char **path);
+void	exec_cmd(t_pipex *pipex, unsigned int n, char *cmd);
+int		here_doc(char *limiter, int len, t_pipex *pipex);
+void	ft_leave(t_pipex *pipex);
 
 #endif

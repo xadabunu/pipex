@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 10:57:44 by xadabunu          #+#    #+#             */
-/*   Updated: 2022/09/23 10:58:05 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:58:05 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
 		tmp = res;
-		res = res * 10 + nptr[i] - '0';
+		res = res * 10 + nptr[i++] - '0';
 		if (tmp > res)
 			return (-1 * (sign == 1));
-		++i;
 	}
 	return (sign * res);
 }

@@ -12,6 +12,8 @@
 
 #include "pipex.h"
 
+char	*get_next_line(int fd);
+
 int	here_doc(char *limiter, int len, t_pipex *pipex)
 {
 	const char	*file = ".pipex_hidden_file";
@@ -33,6 +35,6 @@ int	here_doc(char *limiter, int len, t_pipex *pipex)
 	if (line)
 		free(line);
 	close(fd);
-	pipex->infile = file;
+	pipex->infile = (char *)file;
 	return (1);
 }

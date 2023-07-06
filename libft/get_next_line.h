@@ -17,7 +17,9 @@
 # include <stdlib.h>
 # include <limits.h>
 
-# define OPEN_MAX 50
+# ifndef OPEN_MAX
+#  define OPEN_MAX 50
+# endif
 # define BUFFER_SIZE 50
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);

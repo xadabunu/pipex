@@ -6,13 +6,18 @@
 #    By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/24 18:31:48 by xadabunu          #+#    #+#              #
-#    Updated: 2023/07/06 02:28:27 by xadabunu         ###   ########.fr        #
+#    Updated: 2023/07/06 17:31:47 by xadabunu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	pipex
 
-SRCS	=	pipex.c
+SRCS	=	pipex.c \
+			exec.c \
+			free.c \
+			here_doc.c \
+			leave.c \
+			utils.c
 
 OBJS	=	${SRCS:.c=.o}
 

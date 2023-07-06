@@ -29,6 +29,12 @@ static void	update_nl(char *nl)
 		nl[writer++] = '\0';
 }
 
+static char	*gnfree(char *dest)
+{
+	free(dest);
+	return (NULL);
+}
+
 static char	*gnl_copy(char *src, long fd, char *buffer)
 {
 	char	*dest;
