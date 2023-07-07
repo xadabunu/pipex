@@ -6,11 +6,13 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:31:55 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/06 19:50:47 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:58:15 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	ft_wait(t_pipex *pipex);
 
 static int	check_args(int argc, char **argv)
 {
@@ -95,6 +97,7 @@ int	main(int argc, char **argv, char **envp)
 		exec_cmd(&pipex, n, argv[n]);
 		++n;
 	}
+	ft_wait(&pipex);
 	ft_leave(&pipex);
 	return (0);
 }

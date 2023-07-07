@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:09:03 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/06 23:47:27 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:58:09 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	exec_cmd(t_pipex *pipex, unsigned int n, char *cmd)
 	if (id == -1)
 		perror("fork");
 	if (n == pipex->last_cmd_index)
-		pipex->last_cmd_index = id;
+		pipex->last_id = id;
 }

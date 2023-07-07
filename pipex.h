@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 # include "libft/libft.h"
 
 # define WR_END 1
