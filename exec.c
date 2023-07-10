@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:09:03 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/07 23:58:09 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:42:46 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,14 @@ static void	dup_fds(int fd_read, int fd_write, t_pipex *pipex)
 
 static void	exec_child(t_pipex *pipex, char *cmd, int fd_read, int fd_write)
 {
-	char	*temp;
-
 	dup_fds(fd_read, fd_write, pipex);
 	close(pipex->pipe[RD_END]);
 	pipex->args = ft_split(cmd, ' ');
 	if (!pipex->args)
 		perror("ft_split");
 	else
-	{
-		temp = pipex->args[0];
-		pipex->args[0] = get_path(pipex->envp, temp);
-		free(temp);
-	}
-	execve(pipex->args[0], pipex->args, pipex->envp);
+		pipex->path = get_path(pipex->envp, pipex->args[0]);
+	execve(pipex->path, pipex->args, pipex->envp_copy);
 	ft_putstr_fd("Command not found: ", STDERR_FILENO);
 	ft_putendl_fd(pipex->args[0], STDERR_FILENO);
 	pipex->exit_code = COMMAND_NOT_FOUND;

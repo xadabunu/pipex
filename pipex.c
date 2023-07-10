@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:31:55 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/07 23:58:15 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:42:28 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	create_pipex(t_pipex *p, char **envp, char **argv, int argc)
 	}
 	else
 		p->infile = argv[1];
+	p->envp_copy = envp;
 	p->outfile = argv[argc - 1];
 	p->last_cmd_index = argc - 2;
 	p->exit_code = 0;

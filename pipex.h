@@ -27,8 +27,9 @@
 typedef struct s_pipex
 {
 	char			**envp;
+	char			**envp_copy;
 	char			**args;
-	char			**path;
+	char			*path;
 	unsigned int	last_cmd_index;
 	int				pipe[2];
 	int				here_doc;
