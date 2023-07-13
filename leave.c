@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:06:36 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/07 22:12:03 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/14 00:11:16 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_wait(t_pipex *pipex)
 	{
 		waitpid(pipex->last_id, &status, 0);
 		if (WIFEXITED(status))
-			pipex->exit_code = WIFEXITED(status);
+			pipex->exit_code = WEXITSTATUS(status);
 		else
 			pipex->exit_code = EXIT_FAILURE;
 	}
