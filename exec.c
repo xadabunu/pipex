@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:09:03 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/10 23:42:46 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/16 19:38:02 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*get_path(char **env, char *cmd)
 		else
 			return (NULL);
 	}
-	while (env[i] != NULL)
+	while (env[i] != NULL)//segfault
 	{
 		temp = ft_strjoin(env[i], cmd);
 		if (!temp)
@@ -73,12 +73,15 @@ static void	exec_child(t_pipex *pipex, char *cmd, int fd_read, int fd_write)
 	close(pipex->pipe[RD_END]);
 	pipex->args = ft_split(cmd, ' ');
 	if (!pipex->args)
-		perror("ft_split");
+	{
+		perror("ft_split");// sortir -> at least 2 segfault
+		exit(2);
+	}
 	else
 		pipex->path = get_path(pipex->envp, pipex->args[0]);
 	execve(pipex->path, pipex->args, pipex->envp_copy);
 	ft_putstr_fd("Command not found: ", STDERR_FILENO);
-	ft_putendl_fd(pipex->args[0], STDERR_FILENO);
+	ft_putendl_fd(pipex->args[0], STDERR_FILENO);// segfault
 	pipex->exit_code = COMMAND_NOT_FOUND;
 	ft_leave(pipex);
 }
