@@ -63,3 +63,16 @@ char	**init_nl(void)
 	}
 	return (nl);
 }
+
+void	gncopy(char *dest, char *src, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	dest[i] = '\0';
+}

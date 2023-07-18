@@ -6,7 +6,7 @@
 /*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:31:55 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/07/16 19:31:13 by xadabunu         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:02:43 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,21 @@ static void	create_pipex(t_pipex *p, char **envp, char **argv, int argc)
 	if (p->envp == NULL)
 	{
 		ft_putendl_fd("envp error", 2);
-		exit (2);
+		exit(2);
 	}
-	if (p->here_doc == 1 && here_doc(argv[2], ft_strlen(argv[2]), p) == -1)
+	if (p->here_doc == 0)
+		p->infile = argv[1];
+	else if (here_doc(argv[2], ft_strlen(argv[2]), p) == -1)
 	{
 		perror("opening file error");
 		free_struct(p);
-		exit (2);
+		exit(2);
 	}
-	else
-		p->infile = argv[1];
 	p->envp_copy = envp;
 	p->outfile = argv[argc - 1];
 	p->last_cmd_index = argc - 2;
 	p->exit_code = 0;
+	p->last_id = -1;
 	open_files(p);
 }
 

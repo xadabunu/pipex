@@ -53,7 +53,7 @@ static char	*gnl_copy(char *src, long fd, char *buffer)
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret > 0)
 		{
-			ft_strlcpy(src, buffer, ret);
+			gncopy(src, buffer, ret + 1);
 			dest = gnl_join(dest, src);
 			update_nl(src);
 			len = gnlen(dest);
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret < 1)
 			return (NULL);
-		ft_strlcpy(nl[fd], buffer, ret);
+		gncopy(nl[fd], buffer, ret);
 	}
 	return (gnl_copy(nl[fd], fd, buffer));
 }
