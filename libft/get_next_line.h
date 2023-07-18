@@ -28,6 +28,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	**init_nl(void);
 char	*gnl_join(char *s1, char *s2);
 size_t	gnlen(const char *str);
-void    gncopy(char *dest, char *src, int len);
+void	gncopy(char *dest, char *src, int len);
 
 #endif
